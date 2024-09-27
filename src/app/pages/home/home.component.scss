@@ -1,6 +1,12 @@
 .content {
     padding: 0 !important;
     margin: 0 !important;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .row {
@@ -27,6 +33,7 @@
         background-color: #f6f6f6;
         border-radius: 30px;
 
+        gap: 10px;
         padding: 10px;
         height: 300px;
         width: 300px;
