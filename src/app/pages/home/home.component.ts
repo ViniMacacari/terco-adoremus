@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-home',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  constructor(
+    private router: Router
+  ) { }
 
+  navegar(pagina: string): void {
+    this.router.navigate([pagina])
+  }
 }
