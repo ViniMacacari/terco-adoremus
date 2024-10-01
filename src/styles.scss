@@ -35,3 +35,20 @@ button {
 
     color: #6b447a;
 }
+
+// Scrollbar
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6b447a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #56335e;
+}
