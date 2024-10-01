@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OracaoComponent } from './oracao.component';
+import { TercoMarianoComponent } from './terco-mariano.component';
 
-describe('OracaoComponent', () => {
-  let component: OracaoComponent;
-  let fixture: ComponentFixture<OracaoComponent>;
+describe('TercoMarianoComponent', () => {
+  let component: TercoMarianoComponent;
+  let fixture: ComponentFixture<TercoMarianoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OracaoComponent]
+      imports: [TercoMarianoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(OracaoComponent);
+    fixture = TestBed.createComponent(TercoMarianoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
