@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
+import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading.component'
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent {
   ) { }
 
   navegar(pagina: string): void {
-    this.router.navigate([pagina])
+    ModalLoadingComponent.show()
+    // this.router.navigate([pagina])
   }
 }
