@@ -5,6 +5,12 @@
 
     &-dialog {
         max-width: 300px;
+        width: 100%;
+        margin: auto;
+
+        @media (max-width: 570px) {
+            max-width: 60%;
+        }
 
         &-centered {
             display: flex;
@@ -25,15 +31,11 @@
         .spinner-border {
             width: 3rem;
             height: 3rem;
+            color: #6b447a;
         }
 
         p {
             margin-top: 15px;
-            // color: #6c757d;
-        }
-
-        .spinner-border {
-            color: #6b447a;
         }
     }
 }
