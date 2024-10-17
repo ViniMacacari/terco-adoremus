@@ -14,12 +14,11 @@ export class HomeComponent {
     private router: Router
   ) { }
 
-  ngAfterViewInit(): void {
+  tercoMariano(): void {
     ModalTercosComponent.show()
   }
 
   navegar(pagina: string): void {
-    ModalTercosComponent.show()
-    // this.router.navigate([pagina])
+    this.router.navigate([pagina])
   }
 }

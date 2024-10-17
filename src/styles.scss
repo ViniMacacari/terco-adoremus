@@ -25,6 +25,12 @@ a {
     font-style: normal;
 
     color: #6b447a;
+
+    cursor: default;
+}
+
+p {
+    cursor: default;
 }
 
 p,
@@ -97,10 +103,15 @@ button {
     outline: none;
     box-shadow: none;
     filter: invert(33%) sepia(34%) saturate(359%) hue-rotate(258deg) brightness(84%) contrast(89%);
+    transition: all 0.1s ease-in-out;
 
     &:focus {
         outline: none;
         box-shadow: none;
+    }
+
+    &:hover {
+        transform: scale(1.1);
     }
 
     &:after {
