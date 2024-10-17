@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading.component'
 import { ModalTercosComponent } from '../../components/modal-tercos/modal-tercos.component'
 
 @Component({
