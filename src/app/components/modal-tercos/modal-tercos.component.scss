@@ -17,7 +17,13 @@
                 font-size: 16px;
             }
             
-            max-width: 60%;
+            max-width: 80%;
+        }
+
+        @media (max-height: 620px) {
+            max-height: 100%;
+            
+            scale: 0.8;
         }
 
         &-centered {
