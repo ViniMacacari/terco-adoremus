@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading.component'
+import { ModalTercosComponent } from '../../components/modal-tercos/modal-tercos.component'
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,12 @@ export class HomeComponent {
     private router: Router
   ) { }
 
+  ngAfterViewInit(): void {
+    ModalTercosComponent.show()
+  }
+
   navegar(pagina: string): void {
-    ModalLoadingComponent.show()
+    ModalTercosComponent.show()
     // this.router.navigate([pagina])
   }
 }

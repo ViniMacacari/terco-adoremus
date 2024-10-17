@@ -1,0 +1,59 @@
+.modal {
+    &-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &-dialog {
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+
+        @media (max-width: 570px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+            
+            max-width: 60%;
+        }
+
+        &-centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-content {
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    &-body {
+        padding: 20px;
+        text-align: center;
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            color: #6b447a;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+    }
+}
+
+hr {
+    margin: 10px 0;
+    border: 1px solid #6b447a;
+}
+
+p {
+    margin: 0;
+    font-size: 20px;
+}

@@ -8,25 +8,23 @@ import { catchError } from 'rxjs/operators'
 })
 export class RequisicaoService {
 
-  private apiUrl = 'http://localhost:2024'
-  private apiKey = 'SUA_CHAVE_AQUI'
+  private apiUrl: string = 'http://api.adoremus.com.br'
+  // private apiKey: string = 'SUA_CHAVE_AQUI'
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
 
   constructor(private http: HttpClient) { }
 
   get(endpoint: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.apiKey}` })
-    return this.http.get(`${this.apiUrl}/${endpoint}`, { headers })
+    return this.http.get(`${this.apiUrl}/${endpoint}`, { headers: this.headers })
       .pipe(
         catchError(this.handleError)
       )
   }
 
   post(endpoint: string, data: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
-    })
-    return this.http.post(`${this.apiUrl}/${endpoint}`, data, { headers })
+    return this.http.post(`${this.apiUrl}/${endpoint}`, data, { headers: this.headers })
       .pipe(
         catchError(this.handleError)
       )
