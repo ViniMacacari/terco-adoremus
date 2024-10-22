@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
+import { CommonModule } from '@angular/common'
+import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading.component'
+import { RequisicaoService } from '../../services/requisicao/requisicao.service'
 
 @Component({
   selector: 'app-terco-mariano',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ModalLoadingComponent],
   templateUrl: './terco-mariano.component.html',
   styleUrl: './terco-mariano.component.scss'
 })
-export class TercoMarianoComponent {
+export class TercoMarianoComponent implements AfterViewInit {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private requisicao: RequisicaoService
+  ) { }
 
-  misterio: string = 'Glorioso'
+  misterio: string | null = ''
   frequencia: string = 'quarta e domingo'
   paiNosso: string = `Pai nosso, que estais nos céus,
     Santificado seja o vosso nome;
@@ -30,9 +40,28 @@ export class TercoMarianoComponent {
     rogai por nós, pecadores,
     agora e na hora de nossa morte.
     Amém`
-  primeiroMisterio: string = ''
-  segundoMisterio: string = ''
-  terceiroMisterio: string = ''
-  quartoMisterio: string = ''
-  quintoMisterio: string = ''
+  dadosTerco: any[] = []
+
+  ngAfterViewInit(): void {
+    this.misterio = this.route.snapshot.paramMap.get('misterio')
+
+    this.cdr.detectChanges()
+
+    ModalLoadingComponent.show()
+
+    this.requisicao.get('santo-terco/buscar/terco-mariano')
+      .subscribe((response: any) => {
+        console.log(response)
+        const terco = response.filter((item: any) => item.id_terco == this.misterio)
+
+        if (terco) {
+          this.dadosTerco = terco
+          ModalLoadingComponent.hide()
+        } else {
+          this.router.navigate(['/'])
+        }
+      }, (error: any) => {
+        console.error(error)
+      })
+  }
 }

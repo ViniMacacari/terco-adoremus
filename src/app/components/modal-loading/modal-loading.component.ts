@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Renderer2 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
 @Component({
@@ -10,18 +10,19 @@ import { CommonModule } from '@angular/common'
 })
 export class ModalLoadingComponent {
   static instance: ModalLoadingComponent
-
   isLoading = false
 
-  constructor() {
+  constructor(private renderer: Renderer2) {
     ModalLoadingComponent.instance = this
   }
 
   static show() {
     ModalLoadingComponent.instance.isLoading = true
+    ModalLoadingComponent.instance.renderer.setStyle(document.body, 'overflow', 'hidden')
   }
 
   static hide() {
     ModalLoadingComponent.instance.isLoading = false
+    ModalLoadingComponent.instance.renderer.removeStyle(document.body, 'overflow')
   }
 }

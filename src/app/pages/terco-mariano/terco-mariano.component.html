@@ -21,10 +21,14 @@
 
     <h2>Mistérios</h2>
     <div class="content-terco p-2">
-        <h5>No Primeiro Mistério nós contemplamos: {{primeiroMisterio}}</h5>
-        <h5>No Segundo Mistério nós contemplamos: {{segundoMisterio}}</h5>
-        <h5>No Terceiro Mistério nós contemplamos: {{terceiroMisterio}}</h5>
-        <h5>No Quarto Mistério nós contemplamos: {{quartoMisterio}}</h5>
-        <h5>No Quinto Mistério nós contemplamos: {{quintoMisterio}}</h5>
+        <div *ngFor="let item of dadosTerco" class="d-flex flex-column mb-3">
+            <h5>No {{item.ordem_misterio}}º mistério contemplamos '{{ item.misterio }}'</h5>
+            <h6>{{ item.passagem }}</h6>
+            <p>{{ item.texto }}</p>
+            <p>Pai-Nosso... (1x)</p>
+            <p>Ave-Maria... (10x)</p>
+        </div>
     </div>
+
+    <h2>Finalização</h2>
 </div>
