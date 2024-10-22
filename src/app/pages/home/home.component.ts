@@ -1,11 +1,12 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
+import { NgOptimizedImage } from '@angular/common'
 import { ModalTercosComponent } from '../../components/modal-tercos/modal-tercos.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
