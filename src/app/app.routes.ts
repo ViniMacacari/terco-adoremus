@@ -4,6 +4,6 @@ import { TercoMarianoComponent } from './pages/terco-mariano/terco-mariano.compo
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'terco-mariano', component: TercoMarianoComponent },
+    { path: 'terco-mariano/:misterio', component: TercoMarianoComponent },
     { path: '**', redirectTo: '' }
 ]

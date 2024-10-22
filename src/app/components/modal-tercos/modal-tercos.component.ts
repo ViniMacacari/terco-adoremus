@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-modal-tercos',
@@ -14,7 +15,9 @@ export class ModalTercosComponent {
 
   isLoading = false
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     ModalTercosComponent.instance = this
   }
 
@@ -24,5 +27,11 @@ export class ModalTercosComponent {
 
   static hide() {
     ModalTercosComponent.instance.isLoading = false
+  }
+
+  redirecionar(rota: string): void {
+    this.router.navigate([rota])
+
+    this.isLoading = false
   }
 }
