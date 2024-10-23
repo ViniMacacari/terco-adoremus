@@ -41,6 +41,7 @@ export class TercoMarianoComponent implements AfterViewInit {
     agora e na hora de nossa morte.
     Amém`
   dadosTerco: any[] = []
+  misterioDesc: string = ''
 
   ngAfterViewInit(): void {
     this.misterio = this.route.snapshot.paramMap.get('misterio')
@@ -51,11 +52,11 @@ export class TercoMarianoComponent implements AfterViewInit {
 
     this.requisicao.get('santo-terco/buscar/terco-mariano')
       .subscribe((response: any) => {
-        console.log(response)
         const terco = response.filter((item: any) => item.id_terco == this.misterio)
 
         if (terco) {
           this.dadosTerco = terco
+          this.misterioDesc = terco[0].terco
           ModalLoadingComponent.hide()
         } else {
           this.router.navigate(['/'])
