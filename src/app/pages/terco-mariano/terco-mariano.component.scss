@@ -38,3 +38,9 @@ hr {
 .content-terco {
     width: 70%;
 }
+
+@media (max-width: 768px) {
+    .content-terco {
+        width: 90%;
+    }
+}

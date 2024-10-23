@@ -60,12 +60,19 @@ export class TercoMarianoComponent implements AfterViewInit {
     Amém.`
   dadosTerco: any[] = []
   misterioDesc: string = ''
+  encerramentoTerco: string = ''
+  salveRainha: string = ''
+  gloria: string = ''
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
     this.misterio = this.route.snapshot.paramMap.get('misterio')
 
     this.cdr.detectChanges()
 
+    await this.carregarMiserios()
+  }
+
+  async carregarMiserios(): Promise<any> {
     ModalLoadingComponent.show()
 
     this.requisicao.get('santo-terco/buscar/terco/mariano')
@@ -75,10 +82,24 @@ export class TercoMarianoComponent implements AfterViewInit {
         if (terco) {
           this.dadosTerco = terco
           this.misterioDesc = terco[0].terco
-          ModalLoadingComponent.hide()
+
+          this.carregarOracoes()
         } else {
           this.router.navigate(['/'])
         }
+      }, (error: any) => {
+        console.error(error)
+      })
+  }
+
+  async carregarOracoes(): Promise<any> {
+    this.requisicao.get('santo-terco/buscar/oracoes/terco')
+      .subscribe((response: any) => {
+        ModalLoadingComponent.hide()
+        
+        this.encerramentoTerco = response[5].oracao
+        this.salveRainha = response[3].oracao
+        this.gloria = response[4].oracao
       }, (error: any) => {
         console.error(error)
       })
