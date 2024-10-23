@@ -5,13 +5,13 @@ import { ModalLoadingComponent } from '../../components/modal-loading/modal-load
 import { RequisicaoService } from '../../services/requisicao/requisicao.service'
 
 @Component({
-  selector: 'app-terco-mariano',
+  selector: 'app-terco-misericordia',
   standalone: true,
   imports: [CommonModule, ModalLoadingComponent],
-  templateUrl: './terco-mariano.component.html',
-  styleUrl: './terco-mariano.component.scss'
+  templateUrl: './terco-misericordia.component.html',
+  styleUrl: './terco-misericordia.component.scss'
 })
-export class TercoMarianoComponent implements AfterViewInit {
+export class TercoMisericordiaComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -62,25 +62,6 @@ export class TercoMarianoComponent implements AfterViewInit {
   misterioDesc: string = ''
 
   ngAfterViewInit(): void {
-    this.misterio = this.route.snapshot.paramMap.get('misterio')
 
-    this.cdr.detectChanges()
-
-    ModalLoadingComponent.show()
-
-    this.requisicao.get('santo-terco/buscar/terco-mariano')
-      .subscribe((response: any) => {
-        const terco = response.filter((item: any) => item.id_terco == this.misterio)
-
-        if (terco) {
-          this.dadosTerco = terco
-          this.misterioDesc = terco[0].terco
-          ModalLoadingComponent.hide()
-        } else {
-          this.router.navigate(['/'])
-        }
-      }, (error: any) => {
-        console.error(error)
-      })
   }
 }
