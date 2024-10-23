@@ -68,7 +68,7 @@ export class TercoMarianoComponent implements AfterViewInit {
 
     ModalLoadingComponent.show()
 
-    this.requisicao.get('santo-terco/buscar/terco-mariano')
+    this.requisicao.get('santo-terco/buscar/terco/mariano')
       .subscribe((response: any) => {
         const terco = response.filter((item: any) => item.id_terco == this.misterio)
 

@@ -9,19 +9,24 @@
 
         <p class="quebra-linha">Rezemos o Credo: <br> {{ credo }}</p>
         <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ paiNosso }}.</p>
-        <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ aveMaria }}.</p>
+        <p class="quebra-linha">Rezemos uma Ave-Maria: <br> {{ aveMaria }}.</p>
     </div>
 
     <h2>Mistérios</h2>
     <div class="content-terco p-2">
-        <div *ngFor="let item of dadosTerco" class="d-flex flex-column mb-3">
-            <h5>No {{item.ordem_misterio}}º mistério contemplamos '{{ item.misterio }}'</h5>
-            <h6>{{ item.passagem }}</h6>
-            <p>{{ item.texto }}</p>
-            <p>Pai-Nosso... (1x)</p>
-            <p>Ave-Maria... (10x)</p>
+        <div *ngFor="let i of [].constructor(5); let idx = index" class="d-flex flex-column mb-3">
+            <h5>No {{idx + 1}}º mistério</h5>
+            <p>(1x) {{ dadosTerco[4]?.oracao || '' }}</p>
+            <p>(10x) {{ dadosTerco[5]?.oracao || '' }}</p>
+            <p>(1x) {{ dadosTerco[6]?.oracao || '' }}</p>
         </div>
     </div>
 
     <h2>Finalização</h2>
+    <div class="content-terco p-2">
+        <div class="d-flex flex-column mb-3">
+            <p>{{ dadosTerco[7]?.oracao || '' }}</p>
+            <p>Finalize este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+        </div>
+    </div>
 </div>

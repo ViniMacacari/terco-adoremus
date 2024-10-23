@@ -62,6 +62,17 @@ export class TercoMisericordiaComponent {
   misterioDesc: string = ''
 
   ngAfterViewInit(): void {
+    this.carregarOracoes()
+  }
 
+  carregarOracoes(): void {
+    ModalLoadingComponent.show()
+
+    this.requisicao.get('santo-terco/buscar/oracoes/terco-misericordia')
+      .subscribe((res: any) => {
+        this.dadosTerco = res
+        console.log(this.dadosTerco)
+        ModalLoadingComponent.hide()
+      })
   }
 }
