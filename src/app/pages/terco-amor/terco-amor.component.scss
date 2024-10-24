@@ -1,0 +1,46 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    padding: 10px;
+
+    a {
+        cursor: pointer;
+    }
+
+    .quebra-linha {
+        white-space: pre-line;
+    }
+}
+
+hr {
+    color: #6b447a;
+    width: 70%;
+}
+
+.misterio {
+    color: #6b447a;
+
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.ajuda {
+    color: #6b447a;
+
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.content-terco {
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .content-terco {
+        width: 90%;
+    }
+}

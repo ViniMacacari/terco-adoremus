@@ -5,13 +5,13 @@ import { ModalLoadingComponent } from '../../components/modal-loading/modal-load
 import { RequisicaoService } from '../../services/requisicao/requisicao.service'
 
 @Component({
-  selector: 'app-terco-misericordia',
+  selector: 'app-terco-amor',
   standalone: true,
   imports: [CommonModule, ModalLoadingComponent],
-  templateUrl: './terco-misericordia.component.html',
-  styleUrl: './terco-misericordia.component.scss'
+  templateUrl: './terco-amor.component.html',
+  styleUrl: './terco-amor.component.scss'
 })
-export class TercoMisericordiaComponent {
+export class TercoAmorComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -68,10 +68,11 @@ export class TercoMisericordiaComponent {
   carregarOracoes(): void {
     ModalLoadingComponent.show()
 
-    this.requisicao.get('santo-terco/buscar/oracoes/terco-misericordia')
+    this.requisicao.get('santo-terco/buscar/terco/amor')
       .subscribe((res: any) => {
         this.dadosTerco = res
         ModalLoadingComponent.hide()
       })
   }
+
 }

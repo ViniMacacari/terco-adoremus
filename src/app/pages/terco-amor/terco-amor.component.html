@@ -1,0 +1,32 @@
+<div class="content">
+    <h1>Terço do Amor</h1>
+    <hr>
+
+    <h2>Início</h2>
+    <div class="content-terco p-2">
+        <h5>Orações de Oferecimento e Introdução</h5>
+        <p>Inicie este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+
+        <p class="quebra-linha">Rezemos o Credo: <br> {{ credo }}</p>
+        <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ paiNosso }}.</p>
+        <p class="quebra-linha">Rezemos uma Ave-Maria: <br> {{ aveMaria }}.</p>
+    </div>
+
+    <h2>Mistérios</h2>
+    <div class="content-terco p-2">
+        <div *ngFor="let i of [].constructor(5); let idx = index" class="d-flex flex-column mb-3">
+            <h5>No {{idx + 1}}º mistério</h5>
+            <p>(1x) {{ dadosTerco[4]?.oracao || '' }}</p>
+            <p>(10x) {{ dadosTerco[5]?.oracao || '' }}</p>
+            <p>(1x) {{ dadosTerco[3]?.oracao || '' }}</p>
+        </div>
+    </div>
+
+    <h2>Finalização</h2>
+    <div class="content-terco p-2">
+        <div class="d-flex flex-column mb-3">
+            <p>(3x) {{ dadosTerco[6]?.oracao || '' }}</p>
+            <p>Finalize este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+        </div>
+    </div>
+</div>
