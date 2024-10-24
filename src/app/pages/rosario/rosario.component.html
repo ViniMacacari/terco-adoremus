@@ -1,0 +1,44 @@
+<div class="content">
+    <h1>Rosário</h1>
+    <p>Rezaremos os 4 mistérios do Terço Mariano</p>
+    <hr>
+
+    <h2>Início</h2>
+    <div class="content-terco p-2">
+        <h5>Orações de Oferecimento e Introdução</h5>
+        <p>Inicie este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+
+        <p>"Divino Jesus, eu vos ofereço este rosário que vou rezar, contemplando os mistérios da vossa Redenção.
+            Concedei-me, pela intercessão de Maria, vossa Mãe Santíssima, a quem me dirijo, as graças necessárias para
+            bem rezá-lo para ganhar as indulgências desta santa devoção."</p>
+
+        <p class="quebra-linha">Rezemos o Credo: <br> {{ credo }}</p>
+        <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ paiNosso }}.</p>
+        <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ aveMaria }}.</p>
+    </div>
+
+    <h2>Mistérios</h2>
+    <div class="content-terco p-2">
+        <div *ngFor="let grupo of agruparPorTerco(dadosTerco)">
+            <h4 class="my-2 text-center">{{ grupo.terco }}</h4>
+            <div *ngFor="let item of grupo.misterios" class="d-flex flex-column mb-3 gap-2">
+                <h5>No {{item.ordem_misterio}}º mistério contemplamos '{{ item.misterio }}'</h5>
+                <h6>{{ item.passagem }}</h6>
+                <p>{{ item.texto }}</p>
+                <p>Pai-Nosso... (1x)</p>
+                <p>Ave-Maria... (10x)</p>
+                <p class="quebra-linha">{{ gloria }}</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Finalização</h2>
+    <div class="content-terco p-2">
+        <div class="d-flex flex-column mb-3">
+            <p class="quebra-linha">{{ encerramentoTerco }}</p>
+            <p class="quebra-linha">{{ salveRainha }}</p>
+
+            <p>Finalize este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+        </div>
+    </div>
+</div>
