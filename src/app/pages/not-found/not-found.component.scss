@@ -1,0 +1,26 @@
+.lottie-container {
+    max-width: 100px;
+    max-height: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+p,
+h4 {
+    margin: 0;
+}
+
+button {
+    height: 35px !important;
+    width: 250px !important;
+
+    transform: scale(0.8);
+}
+
+@media (max-width: 768px) {
+    .lottie-container {
+        max-width: 80px;
+        max-height: 80px;
+        margin: 0 auto;
+    }
+}

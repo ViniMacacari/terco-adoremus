@@ -8,6 +8,8 @@ import { TercoAmorComponent } from './pages/terco-amor/terco-amor.component'
 
 import { RosarioComponent } from './pages/rosario/rosario.component'
 
+import { NotFoundComponent } from './pages/not-found/not-found.component'
+
 export const routes: Routes = [
     { path: '', component: HomeComponent },
 
@@ -16,5 +18,7 @@ export const routes: Routes = [
     { path: 'terco-mariano/:misterio', component: TercoMarianoComponent },
     { path: 'terco-da-misericordia', component: TercoMisericordiaComponent },
     { path: 'terco-do-amor', component: TercoAmorComponent },
-    { path: '**', redirectTo: '' }
+
+    { path: '404', component: NotFoundComponent },
+    { path: '**', redirectTo: '/404' }
 ]
