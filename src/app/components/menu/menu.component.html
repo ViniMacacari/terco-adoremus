@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" (click)="navegar('/')">Santo Terço</a>
     <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="alternar()">
         <span class="navbar-toggler-icon"></span>
     </a>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto" (click)="fechar()">
             <li class="nav-item">
                 <a class="nav-link" (click)="navegar('/')">Início</a>
             </li>
