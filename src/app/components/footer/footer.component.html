@@ -1,9 +1,19 @@
 <div class="footer">
     <h1>Adoremus</h1>
     <p>Unindo fé e prática, a serviço da verdade.</p>
+    <div class="d-flex align-items-center justify-content-center flex-column w-100 my-3">
+        <h6>Links da página:</h6>
+        <div class="d-flex align-items-center justify-content-center mt-1">
+            <a class="footer-link mx-2" (click)="navegar('/rosario')">Rosário</a>
+            <a class="footer-link mx-2" (click)="tercoMariano()">Terço Mariano</a>
+            <a class="footer-link mx-2" (click)="navegar('/terco-da-misericordia')">Terço da Misericórdia</a>
+            <a class="footer-link mx-2" (click)="navegar('/terco-do-amor')">Terço do Amor</a>
+            <a class="footer-link mx-2" (click)="navegar('/sobre')">Sobre</a>
+        </div>
+    </div>
     <hr>
     <div class="d-flex justify-content-center align-items-center flex-column gap-1">
         <a href="https://adoremus.com.br" target="_blank">Veja nosso site completo aqui.</a>
-        <p>© 2024 Adoremus. Todos os direitos reservados.</p>
+        <p class="text-center">© 2024 Adoremus. Todos os direitos reservados.</p>
     </div>
 </div>
