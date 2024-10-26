@@ -84,6 +84,7 @@ export class RosarioComponent {
           this.router.navigate(['/'])
         }
       }, (error: any) => {
+        ModalLoadingComponent.hide()
         this.router.navigate(['/'])
         console.error(error)
       })
@@ -98,6 +99,7 @@ export class RosarioComponent {
         this.salveRainha = response[3].oracao
         this.gloria = response[4].oracao
       }, (error: any) => {
+        ModalLoadingComponent.hide()
         this.router.navigate(['/'])
         console.error(error)
       })

@@ -73,6 +73,7 @@ export class TercoAmorComponent {
         this.dadosTerco = res
         ModalLoadingComponent.hide()
       }, (error: any) => {
+        ModalLoadingComponent.hide()
         this.router.navigate(['/'])
       })
   }
