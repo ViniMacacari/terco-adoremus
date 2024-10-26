@@ -72,6 +72,9 @@ export class TercoMisericordiaComponent {
       .subscribe((res: any) => {
         this.dadosTerco = res
         ModalLoadingComponent.hide()
+      }, (error: any) => {
+        console.log(error)
+        this.router.navigate(['/'])
       })
   }
 }

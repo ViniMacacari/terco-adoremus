@@ -72,6 +72,8 @@ export class TercoAmorComponent {
       .subscribe((res: any) => {
         this.dadosTerco = res
         ModalLoadingComponent.hide()
+      }, (error: any) => {
+        this.router.navigate(['/'])
       })
   }
 

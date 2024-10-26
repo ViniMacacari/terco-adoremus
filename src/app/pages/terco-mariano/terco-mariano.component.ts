@@ -88,6 +88,7 @@ export class TercoMarianoComponent implements AfterViewInit {
           this.router.navigate(['/'])
         }
       }, (error: any) => {
+        this.router.navigate(['/'])
         console.error(error)
       })
   }
@@ -101,6 +102,7 @@ export class TercoMarianoComponent implements AfterViewInit {
         this.salveRainha = response[3].oracao
         this.gloria = response[4].oracao
       }, (error: any) => {
+        this.router.navigate(['/'])
         console.error(error)
       })
   }
