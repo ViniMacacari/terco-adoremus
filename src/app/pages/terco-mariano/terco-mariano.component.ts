@@ -7,7 +7,7 @@ import { RequisicaoService } from '../../services/requisicao/requisicao.service'
 @Component({
   selector: 'app-terco-mariano',
   standalone: true,
-  imports: [CommonModule, ModalLoadingComponent],
+  imports: [CommonModule],
   templateUrl: './terco-mariano.component.html',
   styleUrl: './terco-mariano.component.scss'
 })
@@ -82,6 +82,8 @@ export class TercoMarianoComponent implements AfterViewInit {
         if (terco) {
           this.dadosTerco = terco
           this.misterioDesc = terco[0].terco
+
+          this.frequencia = this.dadosTerco[0].dias_terco
 
           this.carregarOracoes()
         } else {
