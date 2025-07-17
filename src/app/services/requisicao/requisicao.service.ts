@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators'
 })
 export class RequisicaoService {
 
-  // private apiUrl: string = 'https://api.adoremus.com.br'
-  private apiUrl: string = 'http://localhost:2024'
+  private apiUrl: string = 'https://api.adoremus.com.br'
+  // private apiUrl: string = 'http://localhost:2024'
 
   private headers = new HttpHeaders({
     'Content-Type': 'application/json'
