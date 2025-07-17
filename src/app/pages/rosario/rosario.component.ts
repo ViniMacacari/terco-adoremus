@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, AfterViewInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { CommonModule } from '@angular/common'
 import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading.component'
 import { RequisicaoService } from '../../services/requisicao/requisicao.service'
@@ -11,109 +11,68 @@ import { RequisicaoService } from '../../services/requisicao/requisicao.service'
   templateUrl: './rosario.component.html',
   styleUrl: './rosario.component.scss'
 })
-export class RosarioComponent {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
-    private requisicao: RequisicaoService
-  ) { }
-
-  misterio: string | null = ''
-  frequencia: string = 'quarta e domingo'
-  paiNosso: string = `Pai nosso, que estais nos céus,
-    Santificado seja o vosso nome;
-    Venha a nós o vosso reino;
-    Faça-se a vossa vontade,
-    Assim na terra como no céu.
-    O pão nosso de cada dia nos dai hoje;
-    Perdoai-nos as nossas ofensas,
-    Assim como nós perdoamos a quem nos tem ofendido;
-    E não nos deixeis cair em tentação,
-    Mas livrai-nos do mal.
-    Amém`
-  aveMaria: string = `Ave Maria, cheia de graça,
-    o Senhor é convosco;
-    bendita sois vós entre as mulheres
-    e bendito é o fruto do vosso ventre, Jesus.
-    Santa Maria, Mãe de Deus,
-    rogai por nós, pecadores,
-    agora e na hora de nossa morte.
-    Amém`
-  credo: string = `Creio em Deus Pai todo-poderoso, criador do céu e da terra;
-    E em Jesus Cristo, seu único Filho, nosso Senhor;
-    Que foi concebido pelo poder do Espírito Santo;
-    Nasceu da Virgem Maria;
-    Padeceu sob Pôncio Pilatos;
-    Foi crucificado, morto e sepultado;
-    Desceu à mansão dos mortos;
-    Ressuscitou ao terceiro dia;
-    Subiu aos céus;
-    Está sentado à direita de Deus Pai todo-poderoso;
-    Donde há de vir a julgar os vivos e os mortos.
-    Creio no Espírito Santo;
-    Na Santa Igreja Católica;
-    Na comunhão dos santos;
-    Na remissão dos pecados;
-    Na ressurreição da carne;
-    Na vida eterna.
-    Amém.`
+export class RosarioComponent implements AfterViewInit {
   dadosTerco: any[] = []
   misterioDesc: string = ''
   encerramentoTerco: string = ''
   salveRainha: string = ''
   gloria: string = ''
+  credo: string = ''
+  paiNosso: string = ''
+  aveMaria: string = ''
+
+  constructor(
+    private router: Router,
+    private requisicao: RequisicaoService
+  ) { }
 
   async ngAfterViewInit(): Promise<void> {
-    await this.carregarMiserios()
+    await this.carregarMisterios()
   }
 
-  async carregarMiserios(): Promise<any> {
+  async carregarMisterios(): Promise<void> {
     ModalLoadingComponent.show()
 
-    this.requisicao.get('santo-terco/buscar/terco/mariano')
-      .subscribe((response: any) => {
-        const terco = response
+    this.requisicao.get('rosario/misterios').subscribe({
+      next: (response: any) => {
+        const dados = response?.dados
 
-        if (terco) {
-          this.dadosTerco = terco
-          this.misterioDesc = terco[0].terco
-
-          this.carregarOracoes()
-        } else {
+        if (!dados?.misterios?.length || !dados?.oracoes?.length) {
           this.router.navigate(['/'])
+          return
         }
-      }, (error: any) => {
+
+        this.dadosTerco = dados.misterios
+        this.misterioDesc = dados.misterios[0]?.terco ?? ''
+
+        const buscar = (nome: string) =>
+          dados.oracoes.find((o: any) => o.nome.toLowerCase().includes(nome.toLowerCase()))?.oracao ?? ''
+
+        this.credo = buscar('creio')
+        this.paiNosso = buscar('pai-nosso')
+        this.aveMaria = buscar('ave-maria')
+        this.gloria = buscar('glória')
+        this.salveRainha = buscar('salve rainha')
+        this.encerramentoTerco = buscar('encerramento')
+
+        ModalLoadingComponent.hide()
+      },
+      error: (err) => {
         ModalLoadingComponent.hide()
         this.router.navigate(['/'])
-        console.error(error)
-      })
-  }
-
-  async carregarOracoes(): Promise<any> {
-    this.requisicao.get('santo-terco/buscar/oracoes/terco')
-      .subscribe((response: any) => {
-        ModalLoadingComponent.hide()
-
-        this.encerramentoTerco = response[5].oracao
-        this.salveRainha = response[3].oracao
-        this.gloria = response[4].oracao
-      }, (error: any) => {
-        ModalLoadingComponent.hide()
-        this.router.navigate(['/'])
-        console.error(error)
-      })
+        console.error(err)
+      }
+    })
   }
 
   agruparPorTerco(dados: any[]): any[] {
-    const grupos = dados.reduce((acc, item) => {
+    const grupos: { [key: string]: { terco: string, misterios: any[] } } = {}
+
+    for (const item of dados) {
       const terco = item.terco
-      if (!acc[terco]) {
-        acc[terco] = { terco, misterios: [] }
-      }
-      acc[terco].misterios.push(item)
-      return acc
-    }, {})
+      if (!grupos[terco]) grupos[terco] = { terco, misterios: [] }
+      grupos[terco].misterios.push(item)
+    }
 
     return Object.values(grupos)
   }
