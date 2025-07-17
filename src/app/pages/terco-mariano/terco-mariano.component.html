@@ -18,7 +18,7 @@
         <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ aveMaria }}.</p>
     </div>
 
-    <h2>Mistérios</h2>
+    <h2>{{ misterioDesc }}</h2>
     <div class="content-terco p-2">
         <div *ngFor="let item of dadosTerco" class="d-flex flex-column mb-3">
             <h5>No {{item.ordem_misterio}}º mistério contemplamos '{{ item.misterio }}'</h5>
