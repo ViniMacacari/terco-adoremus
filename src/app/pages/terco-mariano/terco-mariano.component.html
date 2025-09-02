@@ -1,21 +1,37 @@
 <div class="content">
     <h1>Terço Mariano</h1>
     <h2 class="misterio">{{ misterioDesc }}</h2>
-    <p>Meditado toda: {{ frequencia }}.</p>
+    <p class="mb-1">Meditado toda: {{ frequencia }}.</p>
+
+    <div class="idiomas">
+        <span (click)="defIdioma('pt')" [class.active]="idioma === 'pt'">
+            Português
+        </span>
+        <span (click)="defIdioma('lat')" [class.active]="idioma === 'lat'">
+            Latim
+        </span>
+    </div>
+
     <hr>
 
     <h2>Início</h2>
     <div class="content-terco p-2">
         <h5>Orações de Oferecimento e Introdução</h5>
-        <p>Iniciemos este terço: Em nome do Pai, e do Filho e do Espírito Santo.</p>
+        <p>
+            {{ idioma === 'pt' ?
+            'Iniciemos este terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
+            'Inicie o terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}
+        </p>
 
-        <p>"Divino Jesus, eu vos ofereço este terço que vou rezar, contemplando os mistérios da vossa Redenção.
+        <p *ngIf="idioma === 'pt'">Oferecimento pessoal: "Divino Jesus, eu vos ofereço este terço que vou rezar,
+            contemplando os mistérios da
+            vossa Redenção.
             Concedei-me, pela intercessão de Maria, vossa Mãe Santíssima, a quem me dirijo, as graças necessárias para
             bem rezá-lo para ganhar as indulgências desta santa devoção."</p>
-
-        <p class="quebra-linha">Rezemos o Credo: <br> {{ credo }}</p>
-        <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ paiNosso }}.</p>
-        <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ aveMaria }}.</p>
+        <p class="quebra-linha">Rezemos o Credo: <br> {{ idioma === 'pt' ? credo : credoLatim }}</p>
+        <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ idioma === 'pt' ? paiNosso : paiNossoLatim }}.
+        </p>
+        <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ idioma === 'pt' ? aveMaria : aveMariaLatim }}.</p>
     </div>
 
     <h2>{{ misterioDesc }}</h2>
@@ -24,19 +40,21 @@
             <h5>No {{item.ordem_misterio}}º mistério contemplamos '{{ item.misterio }}'</h5>
             <h6>{{ item.passagem }}</h6>
             <p>{{ item.texto }}</p>
-            <p>Pai-Nosso... (1x)</p>
+            <p>{{ idioma === 'pt' ? 'Pai-Nosso...' : 'Pater noster...' }} (1x)</p>
             <p>Ave-Maria... (10x)</p>
-            <p class="quebra-linha">{{ gloria }}</p>
+            <p class="quebra-linha">{{ idioma === 'pt' ? gloria : gloriaLatim }}</p>
         </div>
     </div>
 
     <h2>Finalização</h2>
     <div class="content-terco p-2">
         <div class="d-flex flex-column mb-3">
-            <p class="quebra-linha">{{ encerramentoTerco }}</p>
-            <p class="quebra-linha">{{ salveRainha }}</p>
+            <p class="quebra-linha">{{ idioma === 'pt' ? encerramentoTerco : encerramentoTercoLatim }}</p>
+            <p class="quebra-linha">{{ idioma === 'pt' ? salveRainha : salveRainhaLatim }}</p>
 
-            <p>Finalize este terço em nome do Pai, do Filho e do Espírito Santo.</p>
+            <p>{{ idioma === 'pt' ?
+                'Finalizamos este terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
+                'Finalize o terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}</p>
         </div>
     </div>
 </div>
