@@ -24,11 +24,18 @@ export class TercoMarianoComponent implements AfterViewInit {
   misterioDesc: string = ''
   frequencia: string = ''
   paiNosso: string = ''
+  paiNossoLatim: string = ''
   aveMaria: string = ''
+  aveMariaLatim: string = ''
   credo: string = ''
+  credoLatim: string = ''
   gloria: string = ''
+  gloriaLatim: string = ''
   salveRainha: string = ''
+  salveRainhaLatim: string = ''
   encerramentoTerco: string = ''
+  encerramentoTercoLatim: string = ''
+  idioma: string = 'pt'
 
   async ngAfterViewInit(): Promise<void> {
     this.misterio = this.route.snapshot.paramMap.get('misterio')
@@ -57,11 +64,17 @@ export class TercoMarianoComponent implements AfterViewInit {
         this.frequencia = grupo[0].dias_terco
 
         this.paiNosso = oracoes.find((o: any) => o.nome === 'Pai-Nosso')?.oracao || ''
+        this.paiNossoLatim = oracoes.find((o: any) => o.nome === 'Pai-Nosso')?.oracao_latim || ''
         this.aveMaria = oracoes.find((o: any) => o.nome === 'Ave-Maria')?.oracao || ''
+        this.aveMariaLatim = oracoes.find((o: any) => o.nome === 'Ave-Maria')?.oracao_latim || ''
         this.credo = oracoes.find((o: any) => o.nome === 'Creio')?.oracao || ''
+        this.credoLatim = oracoes.find((o: any) => o.nome === 'Creio')?.oracao_latim || ''
         this.gloria = oracoes.find((o: any) => o.nome === 'Glória')?.oracao || ''
+        this.gloriaLatim = oracoes.find((o: any) => o.nome === 'Glória')?.oracao_latim || ''
         this.salveRainha = oracoes.find((o: any) => o.nome === 'Salve Rainha')?.oracao || ''
+        this.salveRainhaLatim = oracoes.find((o: any) => o.nome === 'Salve Rainha')?.oracao_latim || ''
         this.encerramentoTerco = oracoes.find((o: any) => o.nome === 'Encerramento do Terço')?.oracao || ''
+        this.encerramentoTercoLatim = oracoes.find((o: any) => o.nome === 'Encerramento do Terço')?.oracao_latim || ''
 
         ModalLoadingComponent.hide()
       }, (error: any) => {
@@ -69,5 +82,9 @@ export class TercoMarianoComponent implements AfterViewInit {
         this.router.navigate(['/'])
         console.error(error)
       })
+  }
+
+  defIdioma(i: string) {
+    this.idioma = i
   }
 }
