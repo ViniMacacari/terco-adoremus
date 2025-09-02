@@ -7,7 +7,7 @@ import { RequisicaoService } from '../../services/requisicao/requisicao.service'
 @Component({
   selector: 'app-rosario',
   standalone: true,
-  imports: [CommonModule, ModalLoadingComponent],
+  imports: [CommonModule],
   templateUrl: './rosario.component.html',
   styleUrl: './rosario.component.scss'
 })
