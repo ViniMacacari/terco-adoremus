@@ -59,7 +59,7 @@ export class TercoMarianoComponent implements AfterViewInit {
     portugues: string,
     latim: string
   } = {
-      portugues: '(+ Opcional devocional) Abençoai o Santo Padre, o Papa,o nosso (Arce)Bispo (Dom) N. e todo o clero; socorrei as nossas famíliase as famílias do mundo inteiro. Amém.',
+      portugues: '(+ Opcional devocional) Abençoai o Santo Padre, o Papa,o nosso (Arce)Bispo (Dom) N. e todo o clero; socorrei as nossas famílias e as famílias do mundo inteiro. Amém.',
       latim: '(+ Opcional devocional) Benedic Sanctum Patrem, Papam,Episcopum nostrum N., et universum clerum; subveni familiis nostriset familiis totius mundi. Amen.'
     }
 
@@ -67,8 +67,8 @@ export class TercoMarianoComponent implements AfterViewInit {
     portugues: string,
     latim: string
   } = {
-      portugues: '(+ Opcional jaculatória) Ó Jesus, manso e humilde de coração,fazei o meu coração semelhante ao Vosso',
-      latim: '(+ Opcional jaculatória) Iesu, mitis et humilis Corde,fac cor meum secundum Cor Tuum.'
+      portugues: '(+ Opcional jaculatória) Ó Jesus, manso e humilde de coração, fazei o meu coração semelhante ao Vosso',
+      latim: '(+ Opcional jaculatória) Iesu, mitis et humilis Corde, fac cor meum secundum Cor Tuum.'
     }
 
   opcionalIntercessao: {
@@ -76,7 +76,7 @@ export class TercoMarianoComponent implements AfterViewInit {
     latim: string,
     santos: string[]
   } = {
-      portugues: 'Orai por nós',
+      portugues: 'Rogai por nós',
       latim: 'Ora pro nobis',
       santos: [
         'São Bento',
