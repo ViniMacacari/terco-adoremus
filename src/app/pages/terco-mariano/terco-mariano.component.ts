@@ -36,6 +36,81 @@ export class TercoMarianoComponent implements AfterViewInit {
   encerramentoTerco: string = ''
   encerramentoTercoLatim: string = ''
   idioma: string = 'pt'
+  oferecimento: {
+    portugues: string,
+    latim: string
+  } = {
+      portugues: `"Divino Jesus, eu vos ofereço este terço que vou rezar,
+            contemplando os mistérios da
+            vossa Redenção.
+            Concedei-me, pela intercessão de Maria, vossa Mãe Santíssima, a quem me dirijo, as graças necessárias para
+            bem rezá-lo para ganhar as indulgências desta santa devoção."`,
+      latim: 'Divine Iesu, tibi offero hoc Rosarium,in meditatione mysteriorum Redemptionis nostrae.Concede mihi, quaesumus,per intercessionem Beatissimae Virginis Mariae, Matris tuae,ad quam me converto,gratias necessarias ad illud digne recitandum,et indulgentias huius sanctae devotionis obtinendas.'
+    }
+  oracaoFatima: {
+    portugues: string,
+    latim: string
+  } = {
+      portugues: 'Ó meu bom Jesus,perdoai-nos, livrai-nos do fogo do inferno,levai as almas todas para o Céu,e socorrei principalmente as que mais precisarem da vossa misericórdia. Amém.',
+      latim: 'O mi Iesu,dimitte nobis debita nostra,libera nos ab igne inferni,conduc in caelum omnes animas,praesertim illasquae misericordiae tuae maxime indigent. Amen.'
+    }
+
+  complementoFatimaOpcional: {
+    portugues: string,
+    latim: string
+  } = {
+      portugues: '(+ Opcional devocional) Abençoai o Santo Padre, o Papa,o nosso (Arce)Bispo (Dom) N. e todo o clero; socorrei as nossas famíliase as famílias do mundo inteiro. Amém.',
+      latim: '(+ Opcional devocional) Benedic Sanctum Patrem, Papam,Episcopum nostrum N., et universum clerum; subveni familiis nostriset familiis totius mundi. Amen.'
+    }
+
+  opcionalSagradoCoracao: {
+    portugues: string,
+    latim: string
+  } = {
+      portugues: '(+ Opcional jaculatória) Ó Jesus, manso e humilde de coração,fazei o meu coração semelhante ao Vosso',
+      latim: '(+ Opcional jaculatória) Iesu, mitis et humilis Corde,fac cor meum secundum Cor Tuum.'
+    }
+
+  opcionalIntercessao: {
+    portugues: string,
+    latim: string,
+    santos: string[]
+  } = {
+      portugues: 'Orai por nós',
+      latim: 'Ora pro nobis',
+      santos: [
+        'São Bento',
+        'São José',
+        'Santa Maria Goretti',
+        'Santa Teresinha do Menino Jesus',
+        'Santo Antônio',
+        'São Francisco de Assis',
+        'São Padre Pio',
+        'Santa Rita de Cássia',
+        'São João Paulo II',
+        'São Pio V',
+        'São Pio X',
+        'São Tomás de Aquino',
+        'Santo Agostinho',
+        'São Gregório Magno',
+        'Santo Ambrósio',
+        'Santa Mônica',
+        'São Luís & Santa Zélia',
+        'Santa Maria, Mãe de Deus (Mater Dei)',
+        'São João Batista',
+        'São Pedro',
+        'São Paulo',
+        'São Maximiliano Kolbe',
+        'Santa Catarina de Sena',
+        'Santa Joana d\'Arc',
+        'São Carlo Acutis',
+        'São Pier Giorgio Frassati',
+        'São Padre Pio',
+        'Santa(s) Perpétua & Felicidade'
+      ]
+    }
+  santosAleatorios: string[] = []
+  santosCache: Record<string, string[]> = {}
 
   async ngAfterViewInit(): Promise<void> {
     this.misterio = this.route.snapshot.paramMap.get('misterio')
@@ -86,5 +161,47 @@ export class TercoMarianoComponent implements AfterViewInit {
 
   defIdioma(i: string) {
     this.idioma = i
+  }
+
+  sortearSantos(qtd: number): void {
+    const lista = this.opcionalIntercessao.santos
+    if (!lista || lista.length === 0) {
+      this.santosAleatorios = []
+      return
+    }
+
+    const max = Math.min(qtd, lista.length)
+    const usados = new Set<number>()
+    const selecionados: string[] = []
+
+    while (selecionados.length < max) {
+      const i = Math.floor(Math.random() * lista.length)
+      if (usados.has(i)) continue
+      usados.add(i)
+      selecionados.push(lista[i])
+    }
+
+    this.santosAleatorios = selecionados
+  }
+
+  getSantos(item: any): string[] {
+    const key = String(item.ordem_misterio ?? item.id ?? item.misterio)
+
+    if (this.santosCache[key]) return this.santosCache[key]
+
+    const lista = this.opcionalIntercessao.santos
+    const max = Math.min(2, lista.length)
+    const usados = new Set<number>()
+    const selecionados: string[] = []
+
+    while (selecionados.length < max) {
+      const i = Math.floor(Math.random() * lista.length)
+      if (usados.has(i)) continue
+      usados.add(i)
+      selecionados.push(lista[i])
+    }
+
+    this.santosCache[key] = selecionados
+    return selecionados
   }
 }

@@ -19,19 +19,15 @@
         <h5>Orações de Oferecimento e Introdução</h5>
         <p>
             {{ idioma === 'pt' ?
-            'Iniciemos este terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
-            'Inicie o terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}
+            'Iniciemos este santo terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
+            'Iniciemos este santo terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}
         </p>
 
-        <p *ngIf="idioma === 'pt'">Oferecimento pessoal: "Divino Jesus, eu vos ofereço este terço que vou rezar,
-            contemplando os mistérios da
-            vossa Redenção.
-            Concedei-me, pela intercessão de Maria, vossa Mãe Santíssima, a quem me dirijo, as graças necessárias para
-            bem rezá-lo para ganhar as indulgências desta santa devoção."</p>
-        <p class="quebra-linha">Rezemos o Credo: <br> {{ idioma === 'pt' ? credo : credoLatim }}</p>
+        <p>Oração inicial: {{ idioma === 'pt' ? oferecimento.portugues : oferecimento.latim }}</p>
+        <p class="quebra-linha">Rezemos o Credo dos Apóstolos: <br> {{ idioma === 'pt' ? credo : credoLatim }}</p>
         <p class="quebra-linha">Após o Credo reza-se o Pai Nosso: <br> {{ idioma === 'pt' ? paiNosso : paiNossoLatim }}.
         </p>
-        <p class="quebra-linha">Rezemos (3x) Ave-Maria: <br> {{ idioma === 'pt' ? aveMaria : aveMariaLatim }}.</p>
+        <p class="quebra-linha">Rezemos, Ave-Maria (3x): <br> {{ idioma === 'pt' ? aveMaria : aveMariaLatim }}.</p>
     </div>
 
     <h2>{{ misterioDesc }}</h2>
@@ -43,6 +39,14 @@
             <p>{{ idioma === 'pt' ? 'Pai-Nosso...' : 'Pater noster...' }} (1x)</p>
             <p>Ave-Maria... (10x)</p>
             <p class="quebra-linha">{{ idioma === 'pt' ? gloria : gloriaLatim }}</p>
+            <p>{{ idioma === 'pt' ? oracaoFatima.portugues : oracaoFatima.latim }}</p>
+            <p class="quebra-linha">{{ idioma === 'pt' ? complementoFatimaOpcional.portugues :
+                complementoFatimaOpcional.latim }}</p>
+            <p>{{ idioma === 'pt' ? opcionalSagradoCoracao.portugues : opcionalSagradoCoracao.latim }}</p>
+            <p>(+ Opcional intercessão)</p>
+            <p *ngFor="let s of getSantos(item)">
+                {{ s }}: {{ idioma === 'pt' ? opcionalIntercessao.portugues : opcionalIntercessao.latim }}.
+            </p>
         </div>
     </div>
 
@@ -53,8 +57,8 @@
             <p class="quebra-linha">{{ idioma === 'pt' ? salveRainha : salveRainhaLatim }}</p>
 
             <p>{{ idioma === 'pt' ?
-                'Finalizamos este terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
-                'Finalize o terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}</p>
+                'Finalizamos este santo terço: Em nome do Pai, e do Filho e do Espírito Santo.' :
+                'Finalizamos este santo terço: In nomine Patris, et Filii, et Spiritus Sancti. Amen.' }}</p>
         </div>
     </div>
 </div>
